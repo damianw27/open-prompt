@@ -41,7 +41,8 @@ pub fn build(b: *std.Build) void {
         .{ .src_dir = "vendor/tree-sitter-typescript/typescript/src", .scanner = "vendor/tree-sitter-typescript/typescript/src/scanner.c" },
         .{ .src_dir = "vendor/tree-sitter-typescript/tsx/src", .scanner = "vendor/tree-sitter-typescript/tsx/src/scanner.c" },
         .{ .src_dir = "vendor/tree-sitter-lua/src", .scanner = "vendor/tree-sitter-lua/src/scanner.c" },
-        .{ .src_dir = "vendor/tree-sitter-zig/src", .scanner = null },
+        // tree-sitter-zig vendor parser targets an older Tree-sitter ABI than v0.26.
+        // Re-enable after updating the submodule to a TS 0.26-compatible commit.
     };
     for (grammars) |grammar| {
         addGrammarSources(b, openprompt_lsp_mod, .{

@@ -137,6 +137,5 @@ fn queryForLanguage(host_lang: language.HostLanguage) []const u8 {
         .javascript => @embedFile("../queries/host/javascript.scm"),
         .typescript => @embedFile("../queries/host/typescript.scm"),
         .lua => @embedFile("../queries/host/lua.scm"),
-        .zig => @embedFile("../queries/host/zig.scm"),
     };
 }

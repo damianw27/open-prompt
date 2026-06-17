@@ -8,7 +8,6 @@ extern fn tree_sitter_cpp() callconv(.c) *const ts.Language;
 extern fn tree_sitter_typescript() callconv(.c) *const ts.Language;
 extern fn tree_sitter_tsx() callconv(.c) *const ts.Language;
 extern fn tree_sitter_lua() callconv(.c) *const ts.Language;
-extern fn tree_sitter_zig() callconv(.c) *const ts.Language;
 
 pub const HostLanguage = enum {
     cpp,
@@ -16,7 +15,6 @@ pub const HostLanguage = enum {
     javascript,
     typescript,
     lua,
-    zig,
 
     pub fn fromPath(path: []const u8) ?HostLanguage {
         const ext = std.fs.path.extension(path);
@@ -48,9 +46,6 @@ pub const HostLanguage = enum {
         if (std.ascii.eqlIgnoreCase(ext, ".lua")) {
             return .lua;
         }
-        if (std.ascii.eqlIgnoreCase(ext, ".zig")) {
-            return .zig;
-        }
 
         return null;
     }
@@ -62,7 +57,6 @@ pub const HostLanguage = enum {
             .javascript => tree_sitter_javascript(),
             .typescript => tree_sitter_typescript(),
             .lua => tree_sitter_lua(),
-            .zig => tree_sitter_zig(),
         };
     }
 };
