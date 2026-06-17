@@ -1,0 +1,142 @@
+==================
+Simple interpolation
+==================
+
+Hello {{ $user }}
+
+---
+
+(document
+  (document_element
+    (prompt_content
+      (markdown_inline
+        (newline_token))))
+  (document_element
+    (prompt_content
+      (markdown_inline
+        (markdown_text))))
+  (document_element
+    (prompt_content
+      (interpolation
+        (variable_reference
+          (variable_identifier)))))
+  (document_element
+    (prompt_content
+      (markdown_inline
+        (newline_token)))))
+
+==================
+Variable path interpolation
+==================
+
+Hello {{ $user.name }}
+
+---
+
+(document
+  (document_element
+    (prompt_content
+      (markdown_inline
+        (newline_token))))
+  (document_element
+    (prompt_content
+      (markdown_inline
+        (markdown_text))))
+  (document_element
+    (prompt_content
+      (interpolation
+        (variable_reference
+          (variable_identifier)
+          (variable_path_segment
+            (identifier))))))
+  (document_element
+    (prompt_content
+      (markdown_inline
+        (newline_token)))))
+
+==================
+Prompt selection interpolation
+==================
+
+Hello {{ $user["profile"] }}
+
+---
+
+(document
+  (document_element
+    (prompt_content
+      (markdown_inline
+        (newline_token))))
+  (document_element
+    (prompt_content
+      (markdown_inline
+        (markdown_text))))
+  (document_element
+    (prompt_content
+      (interpolation
+        (variable_reference
+          (variable_identifier)
+          (prompt_selection
+            (string))))))
+  (document_element
+    (prompt_content
+      (markdown_inline
+        (newline_token)))))
+
+==================
+Interpolation with whitespace
+==================
+
+Hello {{  $user  }}
+
+---
+
+(document
+  (document_element
+    (prompt_content
+      (markdown_inline
+        (newline_token))))
+  (document_element
+    (prompt_content
+      (markdown_inline
+        (markdown_text))))
+  (document_element
+    (prompt_content
+      (interpolation
+        (variable_reference
+          (variable_identifier)))))
+  (document_element
+    (prompt_content
+      (markdown_inline
+        (newline_token)))))
+
+==================
+Multi-segment variable path
+==================
+
+Hello {{ $user.profile.name }}
+
+---
+
+(document
+  (document_element
+    (prompt_content
+      (markdown_inline
+        (newline_token))))
+  (document_element
+    (prompt_content
+      (markdown_inline
+        (markdown_text))))
+  (document_element
+    (prompt_content
+      (interpolation
+        (variable_reference
+          (variable_identifier)
+          (variable_path_segment
+            (identifier))
+          (variable_path_segment
+            (identifier))))))
+  (document_element
+    (prompt_content
+      (markdown_inline
+        (newline_token)))))

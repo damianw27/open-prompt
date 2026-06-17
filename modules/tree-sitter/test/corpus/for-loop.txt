@@ -1,0 +1,78 @@
+==================
+For loop
+==================
+
+[[@for $item in items]]
+{{ $item }}
+[[@end]]
+
+---
+
+(document
+  (document_element
+    (prompt_content
+      (markdown_inline
+        (newline_token))))
+  (document_element
+    (prompt_content
+      (for_loop
+        (for_start
+          (variable_identifier)
+          (for_iterable
+            (identifier)))
+        (prompt_content
+          (markdown_inline
+            (newline_token)))
+        (prompt_content
+          (interpolation
+            (variable_reference
+              (variable_identifier))))
+        (prompt_content
+          (markdown_inline
+            (newline_token)))
+        (end_directive))))
+  (document_element
+    (prompt_content
+      (markdown_inline
+        (newline_token)))))
+
+==================
+For loop with dotted iterable
+==================
+
+[[@for $row in data.rows]]
+{{ $row.id }}
+[[@end]]
+
+---
+
+(document
+  (document_element
+    (prompt_content
+      (markdown_inline
+        (newline_token))))
+  (document_element
+    (prompt_content
+      (for_loop
+        (for_start
+          (variable_identifier)
+          (for_iterable
+            (identifier)
+            (identifier)))
+        (prompt_content
+          (markdown_inline
+            (newline_token)))
+        (prompt_content
+          (interpolation
+            (variable_reference
+              (variable_identifier)
+              (variable_path_segment
+                (identifier)))))
+        (prompt_content
+          (markdown_inline
+            (newline_token)))
+        (end_directive))))
+  (document_element
+    (prompt_content
+      (markdown_inline
+        (newline_token)))))

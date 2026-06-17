@@ -1,0 +1,142 @@
+==================
+Markdown heading
+==================
+
+# Heading
+
+---
+
+(document
+  (document_element
+    (prompt_content
+      (markdown_inline
+        (newline_token))))
+  (document_element
+    (prompt_content
+      (markdown_block
+        (heading)))))
+
+==================
+Markdown blockquote
+==================
+
+> Quote line
+
+---
+
+(document
+  (document_element
+    (prompt_content
+      (markdown_inline
+        (newline_token))))
+  (document_element
+    (prompt_content
+      (markdown_block
+        (blockquote_line)))))
+
+==================
+Markdown blank line
+==================
+
+
+Text after blank line
+
+---
+
+(document
+  (document_element
+    (prompt_content
+      (markdown_inline
+        (newline_token))))
+  (document_element
+    (prompt_content
+      (markdown_inline
+        (newline_token))))
+  (document_element
+    (prompt_content
+      (markdown_inline
+        (markdown_text))))
+  (document_element
+    (prompt_content
+      (markdown_inline
+        (newline_token)))))
+
+==================
+Markdown list markers
+==================
+
+- dash item
+* star item
++ plus item
+
+---
+
+(document
+  (document_element
+    (prompt_content
+      (markdown_inline
+        (newline_token))))
+  (document_element
+    (prompt_content
+      (markdown_block
+        (list_item
+          (list_line)
+          (markdown_text)
+          (newline_token)))))
+  (document_element
+    (prompt_content
+      (markdown_block
+        (list_item
+          (list_line)
+          (markdown_text)
+          (newline_token)))))
+  (document_element
+    (prompt_content
+      (markdown_block
+        (list_item
+          (list_line)
+          (markdown_text)
+          (newline_token))))))
+
+==================
+Ordered list item
+==================
+
+1. ordered item
+
+---
+
+(document
+  (document_element
+    (prompt_content
+      (markdown_inline
+        (newline_token))))
+  (document_element
+    (prompt_content
+      (markdown_block
+        (ordered_list_item
+          (ordered_list_line)
+          (markdown_text)
+          (newline_token))))))
+
+==================
+Markdown inline text
+==================
+
+Plain text with ! punctuation
+
+---
+
+(document
+  (document_element
+    (prompt_content
+      (markdown_inline
+        (newline_token))))
+  (document_element
+    (prompt_content
+      (markdown_inline
+        (markdown_text))))
+  (document_element
+    (prompt_content
+      (markdown_inline
+        (newline_token)))))

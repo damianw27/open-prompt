@@ -1,0 +1,47 @@
+{
+  "name": "@openprompt/binding",
+  "version": "0.1.0",
+  "description": "OpenPrompt template runtime bindings for Node.js and browsers",
+  "type": "module",
+  "packageManager": "pnpm@10.12.1",
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "browser": "./dist/browser.js",
+      "node": "./dist/index.js",
+      "default": "./dist/index.js"
+    }
+  },
+  "browser": {
+    "fs": false,
+    "path": false
+  },
+  "files": [
+    "dist",
+    "native",
+    "binding.gyp",
+    "build/Release/openprompt_native.node"
+  ],
+  "scripts": {
+    "build": "tsup",
+    "build:native": "node-gyp rebuild",
+    "typecheck": "tsc -p tsconfig.json --noEmit",
+    "test": "node --test dist/test.js",
+    "prepack": "pnpm run build"
+  },
+  "dependencies": {
+    "node-addon-api": "^8.3.0"
+  },
+  "devDependencies": {
+    "@types/node": "^22.13.10",
+    "node-gyp": "^11.2.0",
+    "tsup": "^8.4.0",
+    "typescript": "^5.8.2"
+  },
+  "pnpm": {
+    "onlyBuiltDependencies": [
+      "node-gyp"
+    ]
+  },
+  "gypfile": true
+}

@@ -1,0 +1,23 @@
+---
+title: Review
+---
+[[@use "common.op" as $prompts]]
+[[@use "14" as $value]]
+
+# Hello
+
+Hello {{ $user.name }}
+
+Test {{ $prompts.example }}
+
+[[@if $user.age >= 18]]
+Adult
+[[@elseif $user.age == 17]]
+Almost adult
+[[@else]]
+Minor
+[[@end]]
+
+[[@for $item in items]]
+- {{ $item.name }}
+[[@end]]

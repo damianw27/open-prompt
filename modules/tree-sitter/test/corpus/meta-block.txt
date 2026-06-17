@@ -1,0 +1,39 @@
+==================
+Meta block
+==================
+[[@template "sidebar"]]
+---
+topic validation
+label "validation"
+---
+[[@end]]
+
+---
+
+(document
+  (document_element
+    (sub_prompt
+      (template_start
+        (prompt_name
+          (string)))
+      (prompt_content
+        (markdown_inline
+          (newline_token)))
+      (meta_block
+        (front_matter_start)
+        (meta_entry
+          (identifier)
+          (meta_value
+            (identifier))
+          (newline_token))
+        (meta_entry
+          (identifier)
+          (meta_value
+            (string))
+          (newline_token))
+        (front_matter_end))
+      (end_directive)))
+  (document_element
+    (prompt_content
+      (markdown_inline
+        (newline_token)))))

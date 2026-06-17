@@ -1,0 +1,159 @@
+==================
+Combined document features
+==================
+
+[[@use "common.prompts" as $prompts]]
+
+# Hello
+
+Hello {{ $user.name }}
+
+[[@if $user.age >= 18]]
+Adult
+[[@elseif $user.age == 17]]
+Almost adult
+[[@else]]
+Minor
+[[@end]]
+
+[[@for $item in items]]
+- {{ $item.name }}
+[[@end]]
+
+---
+
+(document
+  (document_element
+    (prompt_content
+      (markdown_inline
+        (newline_token))))
+  (document_element
+    (use_directive
+      (use_value
+        (directive_path
+          (string)))
+      (variable_identifier)))
+  (document_element
+    (prompt_content
+      (markdown_inline
+        (newline_token))))
+  (document_element
+    (prompt_content
+      (markdown_inline
+        (newline_token))))
+  (document_element
+    (prompt_content
+      (markdown_block
+        (heading))))
+  (document_element
+    (prompt_content
+      (markdown_inline
+        (newline_token))))
+  (document_element
+    (prompt_content
+      (markdown_inline
+        (markdown_text))))
+  (document_element
+    (prompt_content
+      (interpolation
+        (variable_reference
+          (variable_identifier)
+          (variable_path_segment
+            (identifier))))))
+  (document_element
+    (prompt_content
+      (markdown_inline
+        (newline_token))))
+  (document_element
+    (prompt_content
+      (markdown_inline
+        (newline_token))))
+  (document_element
+    (prompt_content
+      (conditional_block
+        (if_start
+          (condition_expr
+            (cond_unary_expr
+              (cond_primary_expr
+                (cond_variable_ref
+                  (variable_identifier)
+                  (identifier))))
+            (cond_operator)
+            (cond_unary_expr
+              (cond_primary_expr
+                (number)))))
+        (prompt_content
+          (markdown_inline
+            (newline_token)))
+        (prompt_content
+          (markdown_inline
+            (markdown_text)))
+        (prompt_content
+          (markdown_inline
+            (newline_token)))
+        (elseif_branch
+          (elseif_start
+            (condition_expr
+              (cond_unary_expr
+                (cond_primary_expr
+                  (cond_variable_ref
+                    (variable_identifier)
+                    (identifier))))
+              (cond_operator)
+              (cond_unary_expr
+                (cond_primary_expr
+                  (number)))))
+          (prompt_content
+            (markdown_inline
+              (newline_token)))
+          (prompt_content
+            (markdown_inline
+              (markdown_text)))
+          (prompt_content
+            (markdown_inline
+              (newline_token))))
+        (else_branch
+          (else_directive)
+          (prompt_content
+            (markdown_inline
+              (newline_token)))
+          (prompt_content
+            (markdown_inline
+              (markdown_text)))
+          (prompt_content
+            (markdown_inline
+              (newline_token))))
+        (end_directive))))
+  (document_element
+    (prompt_content
+      (markdown_inline
+        (newline_token))))
+  (document_element
+    (prompt_content
+      (markdown_inline
+        (newline_token))))
+  (document_element
+    (prompt_content
+      (for_loop
+        (for_start
+          (variable_identifier)
+          (for_iterable
+            (identifier)))
+        (prompt_content
+          (markdown_inline
+            (newline_token)))
+        (prompt_content
+          (markdown_block
+            (list_item
+              (list_line)
+              (interpolation
+                (variable_reference
+                  (variable_identifier)
+                  (variable_path_segment
+                    (identifier))))
+              (newline_token))))
+        (end_directive))))
+  (document_element
+    (prompt_content
+      (markdown_inline
+        (newline_token)))))

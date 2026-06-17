@@ -1,0 +1,64 @@
+==================
+List item interpolation
+==================
+
+[[@for $item in items]]
+- {{ $item.name }}
+[[@end]]
+
+---
+
+(document
+  (document_element
+    (prompt_content
+      (markdown_inline
+        (newline_token))))
+  (document_element
+    (prompt_content
+      (for_loop
+        (for_start
+          (variable_identifier)
+          (for_iterable
+            (identifier)))
+        (prompt_content
+          (markdown_inline
+            (newline_token)))
+        (prompt_content
+          (markdown_block
+            (list_item
+              (list_line)
+              (interpolation
+                (variable_reference
+                  (variable_identifier)
+                  (variable_path_segment
+                    (identifier))))
+              (newline_token))))
+        (end_directive))))
+  (document_element
+    (prompt_content
+      (markdown_inline
+        (newline_token)))))
+
+==================
+Inject directive in list item
+==================
+
+- prefix [[@inject "partials/item.op"]]
+
+---
+
+(document
+  (document_element
+    (prompt_content
+      (markdown_inline
+        (newline_token))))
+  (document_element
+    (prompt_content
+      (markdown_block
+        (list_item
+          (list_line)
+          (markdown_text)
+          (inject_directive
+            (directive_path
+              (string)))
+          (newline_token))))))

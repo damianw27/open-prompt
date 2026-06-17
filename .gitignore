@@ -1,0 +1,29 @@
+# Build outputs
+**/build/
+**/zig-out/
+**/.zig-cache/
+**/zig-pkg/
+
+# Node
+**/node_modules/
+
+# Native artifacts
+*.o
+*.a
+*.so
+*.out
+**/parser.so
+
+# Java / Gradle / IDE
+**/.gradle/
+**/bin/
+.classpath
+.project
+.settings/
+
+# TypeScript binding output
+dist/
+*.log
+
+# CMake test scratch
+**/Testing/Temporary/

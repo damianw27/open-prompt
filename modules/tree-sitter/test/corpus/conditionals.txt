@@ -1,0 +1,380 @@
+==================
+If elseif else block
+==================
+
+[[@if $user.age >= 18]]
+Adult
+[[@elseif $user.age == 17]]
+Almost adult
+[[@else]]
+Minor
+[[@end]]
+
+---
+
+(document
+  (document_element
+    (prompt_content
+      (markdown_inline
+        (newline_token))))
+  (document_element
+    (prompt_content
+      (conditional_block
+        (if_start
+          (condition_expr
+            (cond_unary_expr
+              (cond_primary_expr
+                (cond_variable_ref
+                  (variable_identifier)
+                  (identifier))))
+            (cond_operator)
+            (cond_unary_expr
+              (cond_primary_expr
+                (number)))))
+        (prompt_content
+          (markdown_inline
+            (newline_token)))
+        (prompt_content
+          (markdown_inline
+            (markdown_text)))
+        (prompt_content
+          (markdown_inline
+            (newline_token)))
+        (elseif_branch
+          (elseif_start
+            (condition_expr
+              (cond_unary_expr
+                (cond_primary_expr
+                  (cond_variable_ref
+                    (variable_identifier)
+                    (identifier))))
+              (cond_operator)
+              (cond_unary_expr
+                (cond_primary_expr
+                  (number)))))
+          (prompt_content
+            (markdown_inline
+              (newline_token)))
+          (prompt_content
+            (markdown_inline
+              (markdown_text)))
+          (prompt_content
+            (markdown_inline
+              (newline_token))))
+        (else_branch
+          (else_directive)
+          (prompt_content
+            (markdown_inline
+              (newline_token)))
+          (prompt_content
+            (markdown_inline
+              (markdown_text)))
+          (prompt_content
+            (markdown_inline
+              (newline_token))))
+        (end_directive))))
+  (document_element
+    (prompt_content
+      (markdown_inline
+        (newline_token)))))
+
+==================
+Condition expression forms
+==================
+
+[[@if true]]
+a
+[[@elseif null]]
+b
+[[@elseif 3.14]]
+c
+[[@elseif "ok"]]
+d
+[[@elseif not $user.active]]
+e
+[[@elseif $user.age >= 18 and $user.role == "admin"]]
+f
+[[@elseif ($user.score > 10)]]
+g
+[[@else]]
+h
+[[@end]]
+
+---
+
+(document
+  (document_element
+    (prompt_content
+      (markdown_inline
+        (newline_token))))
+  (document_element
+    (prompt_content
+      (conditional_block
+        (if_start
+          (condition_expr
+            (cond_unary_expr
+              (cond_primary_expr
+                (boolean)))))
+        (prompt_content
+          (markdown_inline
+            (newline_token)))
+        (prompt_content
+          (markdown_inline
+            (markdown_text)))
+        (prompt_content
+          (markdown_inline
+            (newline_token)))
+        (elseif_branch
+          (elseif_start
+            (condition_expr
+              (cond_unary_expr
+                (cond_primary_expr))))
+          (prompt_content
+            (markdown_inline
+              (newline_token)))
+          (prompt_content
+            (markdown_inline
+              (markdown_text)))
+          (prompt_content
+            (markdown_inline
+              (newline_token))))
+        (elseif_branch
+          (elseif_start
+            (condition_expr
+              (cond_unary_expr
+                (cond_primary_expr
+                  (number)))))
+          (prompt_content
+            (markdown_inline
+              (newline_token)))
+          (prompt_content
+            (markdown_inline
+              (markdown_text)))
+          (prompt_content
+            (markdown_inline
+              (newline_token))))
+        (elseif_branch
+          (elseif_start
+            (condition_expr
+              (cond_unary_expr
+                (cond_primary_expr
+                  (string)))))
+          (prompt_content
+            (markdown_inline
+              (newline_token)))
+          (prompt_content
+            (markdown_inline
+              (markdown_text)))
+          (prompt_content
+            (markdown_inline
+              (newline_token))))
+        (elseif_branch
+          (elseif_start
+            (condition_expr
+              (cond_unary_expr
+                (cond_unary_expr
+                  (cond_primary_expr
+                    (cond_variable_ref
+                      (variable_identifier)
+                      (identifier)))))))
+          (prompt_content
+            (markdown_inline
+              (newline_token)))
+          (prompt_content
+            (markdown_inline
+              (markdown_text)))
+          (prompt_content
+            (markdown_inline
+              (newline_token))))
+        (elseif_branch
+          (elseif_start
+            (condition_expr
+              (cond_unary_expr
+                (cond_primary_expr
+                  (cond_variable_ref
+                    (variable_identifier)
+                    (identifier))))
+              (cond_operator)
+              (cond_unary_expr
+                (cond_primary_expr
+                  (number)))
+              (cond_operator)
+              (cond_unary_expr
+                (cond_primary_expr
+                  (cond_variable_ref
+                    (variable_identifier)
+                    (identifier))))
+              (cond_operator)
+              (cond_unary_expr
+                (cond_primary_expr
+                  (string)))))
+          (prompt_content
+            (markdown_inline
+              (newline_token)))
+          (prompt_content
+            (markdown_inline
+              (markdown_text)))
+          (prompt_content
+            (markdown_inline
+              (newline_token))))
+        (elseif_branch
+          (elseif_start
+            (condition_expr
+              (cond_unary_expr
+                (cond_primary_expr
+                  (condition_expr
+                    (cond_unary_expr
+                      (cond_primary_expr
+                        (cond_variable_ref
+                          (variable_identifier)
+                          (identifier))))
+                    (cond_operator)
+                    (cond_unary_expr
+                      (cond_primary_expr
+                        (number))))))))
+          (prompt_content
+            (markdown_inline
+              (newline_token)))
+          (prompt_content
+            (markdown_inline
+              (markdown_text)))
+          (prompt_content
+            (markdown_inline
+              (newline_token))))
+        (else_branch
+          (else_directive)
+          (prompt_content
+            (markdown_inline
+              (newline_token)))
+          (prompt_content
+            (markdown_inline
+              (markdown_text)))
+          (prompt_content
+            (markdown_inline
+              (newline_token))))
+        (end_directive))))
+  (document_element
+    (prompt_content
+      (markdown_inline
+        (newline_token)))))
+
+==================
+Additional condition operators
+==================
+
+[[@if $user.role != "guest" or $user.admin matches "yes"]]
+allowed
+[[@elseif $user.score < 10]]
+low
+[[@end]]
+
+---
+
+(document
+  (document_element
+    (prompt_content
+      (markdown_inline
+        (newline_token))))
+  (document_element
+    (prompt_content
+      (conditional_block
+        (if_start
+          (condition_expr
+            (cond_unary_expr
+              (cond_primary_expr
+                (cond_variable_ref
+                  (variable_identifier)
+                  (identifier))))
+            (cond_operator)
+            (cond_unary_expr
+              (cond_primary_expr
+                (string)))
+            (cond_operator)
+            (cond_unary_expr
+              (cond_primary_expr
+                (cond_variable_ref
+                  (variable_identifier)
+                  (identifier))))
+            (cond_operator)
+            (cond_unary_expr
+              (cond_primary_expr
+                (string)))))
+        (prompt_content
+          (markdown_inline
+            (newline_token)))
+        (prompt_content
+          (markdown_inline
+            (markdown_text)))
+        (prompt_content
+          (markdown_inline
+            (newline_token)))
+        (elseif_branch
+          (elseif_start
+            (condition_expr
+              (cond_unary_expr
+                (cond_primary_expr
+                  (cond_variable_ref
+                    (variable_identifier)
+                    (identifier))))
+              (cond_operator)
+              (cond_unary_expr
+                (cond_primary_expr
+                  (number)))))
+          (prompt_content
+            (markdown_inline
+              (newline_token)))
+          (prompt_content
+            (markdown_inline
+              (markdown_text)))
+          (prompt_content
+            (markdown_inline
+              (newline_token))))
+        (end_directive))))
+  (document_element
+    (prompt_content
+      (markdown_inline
+        (newline_token)))))
+
+==================
+In operator condition
+==================
+
+[[@if "admin" in $user.roles]]
+member
+[[@end]]
+
+---
+
+(document
+  (document_element
+    (prompt_content
+      (markdown_inline
+        (newline_token))))
+  (document_element
+    (prompt_content
+      (conditional_block
+        (if_start
+          (condition_expr
+            (cond_unary_expr
+              (cond_primary_expr
+                (string)))
+            (cond_operator)
+            (cond_unary_expr
+              (cond_primary_expr
+                (cond_variable_ref
+                  (variable_identifier)
+                  (identifier))))))
+        (prompt_content
+          (markdown_inline
+            (newline_token)))
+        (prompt_content
+          (markdown_inline
+            (markdown_text)))
+        (prompt_content
+          (markdown_inline
+            (newline_token)))
+        (end_directive))))
+  (document_element
+    (prompt_content
+      (markdown_inline
+        (newline_token)))))

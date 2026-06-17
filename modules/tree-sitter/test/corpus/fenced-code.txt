@@ -1,0 +1,49 @@
+==================
+Backtick fenced code
+==================
+
+```
+code line
+second line
+```
+
+---
+
+(document
+  (document_element
+    (prompt_content
+      (markdown_inline
+        (newline_token))))
+  (document_element
+    (prompt_content
+      (markdown_block
+        (fenced_code
+          (fence_open)
+          (backtick_code_text)
+          (backtick_code_text)
+          (fence_close))))))
+
+==================
+Tilde fenced code
+==================
+
+~~~
+tilde line
+another line
+~~~
+
+---
+
+(document
+  (document_element
+    (prompt_content
+      (markdown_inline
+        (newline_token))))
+  (document_element
+    (prompt_content
+      (markdown_block
+        (fenced_code
+          (tilde_fence_open)
+          (tilde_code_text)
+          (tilde_code_text)
+          (tilde_fence_close))))))

@@ -1,0 +1,22 @@
+{
+  "name": "tree-sitter-openprompt",
+  "version": "0.1.0",
+  "description": "Tree-sitter grammar for OpenPrompt templates",
+  "files": [
+    "grammar.js",
+    "src",
+    "queries",
+    "tree-sitter.json"
+  ],
+  "scripts": {
+    "generate": "tree-sitter generate",
+    "test": "tree-sitter test",
+    "parse-example": "tree-sitter parse examples/basic.openprompt"
+  },
+  "devDependencies": {
+    "tree-sitter-cli": "^0.25.0"
+  },
+  "peerDependencies": {
+    "tree-sitter": "^0.25.0"
+  }
+}

@@ -1,0 +1,25 @@
+.{
+    .name = .openprompt_lsp,
+    .version = "0.1.0",
+    .fingerprint = 0x492754343e8b8160,
+    .minimum_zig_version = "0.16.0",
+    .dependencies = .{
+        .lsp_kit = .{
+            .url = "git+https://github.com/zigtools/lsp-kit.git?ref=0.16.x#cf0ff08ac00301859656bbd4a5af6fcb889497e4",
+            .hash = "lsp_kit-0.1.0-bi_PL8cxDAAxREwBYHZFTGG2xVuzAjgnZPMmwiajkFu0",
+        },
+        .tree_sitter = .{
+            .url = "git+https://github.com/tree-sitter/zig-tree-sitter.git?ref=v0.26.0#0cf58172e61f6fdd16f681cde42b4acb531a23db",
+            .hash = "tree_sitter-0.26.0-8heIf3CaAQDeVTQc0DMSBhbQAEx5aF-dTen4_LPxMgrv",
+        },
+    },
+    .paths = .{
+        "build.zig",
+        "build.zig.zon",
+        "src",
+        "queries",
+        "test",
+        "vendor",
+        "README.md",
+    },
+}

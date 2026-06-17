@@ -1,0 +1,25 @@
+{
+  "grammars": [
+    {
+      "name": "openprompt",
+      "camelcase": "OpenPrompt",
+      "scope": "source.openprompt",
+      "path": ".",
+      "file-types": [
+        "op",
+        "openprompt",
+        "prompt"
+      ]
+    }
+  ],
+  "metadata": {
+    "version": "0.1.0",
+    "license": "MIT",
+    "description": "OpenPrompt template language grammar",
+    "authors": [
+      {
+        "name": "OpenPrompt"
+      }
+    ]
+  }
+}

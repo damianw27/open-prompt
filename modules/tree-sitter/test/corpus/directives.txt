@@ -1,0 +1,139 @@
+==================
+Use directive with path
+==================
+
+[[@use "common.prompts" as $prompts]]
+
+---
+
+(document
+  (document_element
+    (prompt_content
+      (markdown_inline
+        (newline_token))))
+  (document_element
+    (use_directive
+      (use_value
+        (directive_path
+          (string)))
+      (variable_identifier)))
+  (document_element
+    (prompt_content
+      (markdown_inline
+        (newline_token)))))
+
+==================
+Use directive with number
+==================
+
+[[@use 42 as $answer]]
+
+---
+
+(document
+  (document_element
+    (prompt_content
+      (markdown_inline
+        (newline_token))))
+  (document_element
+    (use_directive
+      (use_value
+        (number))
+      (variable_identifier)))
+  (document_element
+    (prompt_content
+      (markdown_inline
+        (newline_token)))))
+
+==================
+Use directive with boolean
+==================
+
+[[@use false as $flag]]
+
+---
+
+(document
+  (document_element
+    (prompt_content
+      (markdown_inline
+        (newline_token))))
+  (document_element
+    (use_directive
+      (use_value
+        (boolean))
+      (variable_identifier)))
+  (document_element
+    (prompt_content
+      (markdown_inline
+        (newline_token)))))
+
+==================
+Inject directive
+==================
+
+[[@inject "partials/header.op"]]
+
+---
+
+(document
+  (document_element
+    (prompt_content
+      (markdown_inline
+        (newline_token))))
+  (document_element
+    (prompt_content
+      (inject_directive
+        (directive_path
+          (string)))))
+  (document_element
+    (prompt_content
+      (markdown_inline
+        (newline_token)))))
+
+==================
+Use directive with true boolean
+==================
+
+[[@use true as $enabled]]
+
+---
+
+(document
+  (document_element
+    (prompt_content
+      (markdown_inline
+        (newline_token))))
+  (document_element
+    (use_directive
+      (use_value
+        (boolean))
+      (variable_identifier)))
+  (document_element
+    (prompt_content
+      (markdown_inline
+        (newline_token)))))
+
+==================
+Use directive with single-quoted path
+==================
+
+[[@use 'single.prompt' as $prompt]]
+
+---
+
+(document
+  (document_element
+    (prompt_content
+      (markdown_inline
+        (newline_token))))
+  (document_element
+    (use_directive
+      (use_value
+        (directive_path
+          (string)))
+      (variable_identifier)))
+  (document_element
+    (prompt_content
+      (markdown_inline
+        (newline_token)))))

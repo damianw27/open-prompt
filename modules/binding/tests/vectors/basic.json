@@ -1,0 +1,17 @@
+{
+  "template": "---\ntitle: Review\n---\n[[@use \"common.op\" as $prompts]]\n\n# Hello\n\nHello {{ $user.name }}\n\n[[@if $user.age >= 18]]\nAdult\n[[@else]]\nMinor\n[[@end]]\n\n[[@for $item in items]]\n- {{ $item.name }}\n[[@end]]\n",
+  "modules": {
+    "common.op": "[[@template example]]\n\n## Example Section\n\n[[@end]]\n"
+  },
+  "context": {
+    "user": { "name": "Ada", "age": 18 },
+    "items": [ { "name": "one" }, { "name": "two" } ]
+  },
+  "expect_contains": [
+    "Hello Ada",
+    "Adult",
+    "## Example Section",
+    "one",
+    "two"
+  ]
+}
