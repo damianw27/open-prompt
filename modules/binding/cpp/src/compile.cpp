@@ -58,6 +58,24 @@ Value parseUseValue(std::string_view source, TSNode value_node) {
 std::vector<IrNode> Compiler::compilePromptNodes(std::string_view source, const std::vector<TSNode> &nodes) {
     std::vector<IrNode> output;
 
+    const auto is_special_content = [](std::string_view child_kind) -> bool {
+        return child_kind == "interpolation" || child_kind == "conditional_block" || child_kind == "for_loop" ||
+               child_kind == "inject_directive" || child_kind == "prompt_content" || child_kind == "markdown_block" ||
+               child_kind == "markdown_inline" || child_kind == "list_item" || child_kind == "ordered_list_item";
+    };
+
+    const auto append_text_span = [&](uint32_t start_byte, uint32_t end_byte) {
+        if (end_byte <= start_byte) {
+            return;
+        }
+
+        IrNode item;
+        item.kind = IrKind::Text;
+        item.text_start = start_byte;
+        item.text_end = end_byte;
+        output.push_back(item);
+    };
+
     const std::function<void(TSNode)> appendNode = [&](TSNode node) {
         const auto kind = std::string_view(ts_node_type(node));
 
@@ -69,27 +87,36 @@ std::vector<IrNode> Compiler::compilePromptNodes(std::string_view source, const 
             return;
         }
 
-        if (kind == "markdown_block" || kind == "markdown_inline" || kind == "list_item") {
-            bool has_special = false;
+        if (kind == "markdown_block" || kind == "markdown_inline" || kind == "list_item" ||
+            kind == "ordered_list_item") {
+            std::vector<TSNode> special_children;
 
             for (const auto child : Cst::namedChildren(node)) {
                 const auto child_kind = std::string_view(ts_node_type(child));
 
-                if (child_kind == "interpolation" || child_kind == "conditional_block" || child_kind == "for_loop" ||
-                    child_kind == "inject_directive" || child_kind == "prompt_content" || child_kind == "markdown_block" ||
-                    child_kind == "markdown_inline" || child_kind == "list_item") {
-                    has_special = true;
-                    appendNode(child);
+                if (is_special_content(child_kind)) {
+                    special_children.push_back(child);
                 }
             }
 
-            if (!has_special) {
-                IrNode item;
-                item.kind = IrKind::Text;
-                item.text_start = ts_node_start_byte(node);
-                item.text_end = ts_node_end_byte(node);
-                output.push_back(item);
+            if (special_children.empty()) {
+                append_text_span(ts_node_start_byte(node), ts_node_end_byte(node));
+
+                return;
             }
+
+            uint32_t cursor = ts_node_start_byte(node);
+
+            for (const auto special_child : special_children) {
+                const auto special_start = ts_node_start_byte(special_child);
+                const auto special_end = ts_node_end_byte(special_child);
+
+                append_text_span(cursor, special_start);
+                appendNode(special_child);
+                cursor = special_end;
+            }
+
+            append_text_span(cursor, ts_node_end_byte(node));
 
             return;
         }

@@ -88,8 +88,8 @@ Minor
     expectContains(rendered, "Hello Ada", "interpolation");
     expectContains(rendered, "Adult", "conditional_true");
     expectContains(rendered, "## Example Section", "template_use");
-    expectContains(rendered, "one", "for_loop");
-    expectContains(rendered, "two", "for_loop_second");
+    expectContains(rendered, "- one", "for_loop_list_marker");
+    expectContains(rendered, "- two", "for_loop_second");
 
     op_engine_destroy(engine);
 
