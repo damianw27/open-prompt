@@ -85,7 +85,69 @@ std::string parseJsonString(std::string_view &input) {
 
             const char escaped = input.front();
             input.remove_prefix(1);
-            out.push_back(escaped);
+
+            switch (escaped) {
+                case '"':
+                case '\\':
+                case '/':
+                    out.push_back(escaped);
+                    break;
+                case 'b':
+                    out.push_back('\b');
+                    break;
+                case 'f':
+                    out.push_back('\f');
+                    break;
+                case 'n':
+                    out.push_back('\n');
+                    break;
+                case 'r':
+                    out.push_back('\r');
+                    break;
+                case 't':
+                    out.push_back('\t');
+                    break;
+                case 'u': {
+                    if (input.size() < 4) {
+                        throw std::runtime_error("invalid json unicode escape");
+                    }
+
+                    unsigned codePoint = 0;
+
+                    for (int digitIndex = 0; digitIndex < 4; ++digitIndex) {
+                        const char hex = input[static_cast<std::size_t>(digitIndex)];
+                        codePoint <<= 4;
+
+                        if (hex >= '0' && hex <= '9') {
+                            codePoint |= static_cast<unsigned>(hex - '0');
+                        } else if (hex >= 'a' && hex <= 'f') {
+                            codePoint |= static_cast<unsigned>(hex - 'a' + 10);
+                        } else if (hex >= 'A' && hex <= 'F') {
+                            codePoint |= static_cast<unsigned>(hex - 'A' + 10);
+                        } else {
+                            throw std::runtime_error("invalid json unicode escape");
+                        }
+                    }
+
+                    input.remove_prefix(4);
+
+                    if (codePoint <= 0x7FU) {
+                        out.push_back(static_cast<char>(codePoint));
+                    } else if (codePoint <= 0x7FFU) {
+                        out.push_back(static_cast<char>(0xC0 | ((codePoint >> 6) & 0x1F)));
+                        out.push_back(static_cast<char>(0x80 | (codePoint & 0x3F)));
+                    } else {
+                        out.push_back(static_cast<char>(0xE0 | ((codePoint >> 12) & 0x0F)));
+                        out.push_back(static_cast<char>(0x80 | ((codePoint >> 6) & 0x3F)));
+                        out.push_back(static_cast<char>(0x80 | (codePoint & 0x3F)));
+                    }
+
+                    break;
+                }
+                default:
+                    throw std::runtime_error("invalid json escape");
+            }
+
             continue;
         }
 

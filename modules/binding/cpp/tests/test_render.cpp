@@ -93,5 +93,25 @@ Minor
 
     op_engine_destroy(engine);
 
+    auto *escapeEngine = op_engine_create(op_vfs_memory());
+    const char *escapeSource = "{{ $richText }}";
+    const char *escapeContext = R"({"richText":"Para one\n\nPara two\tTabbed"})";
+
+    expectStatus(op_engine_load_string(escapeEngine, escapeSource, std::strlen(escapeSource), "escape.op"), OP_OK,
+                 "escape_load_string");
+    expectStatus(op_engine_set_context_json(escapeEngine, escapeContext, std::strlen(escapeContext)), OP_OK,
+                 "escape_set_context");
+
+    char *escapeOutput = nullptr;
+    size_t escapeOutputLen = 0;
+    expectStatus(op_engine_render(escapeEngine, &escapeOutput, &escapeOutputLen), OP_OK, "escape_render");
+
+    const std::string escapeRendered(escapeOutput != nullptr ? std::string(escapeOutput, escapeOutputLen) : "");
+    op_string_free(escapeOutput);
+
+    expectContains(escapeRendered, "Para one\n\nPara two\tTabbed", "json_whitespace_unescape");
+
+    op_engine_destroy(escapeEngine);
+
     return failures == 0 ? 0 : 1;
 }
